@@ -14,16 +14,16 @@ import models.Message;
 import utils.DBUtil;
 
 /**
- * Servlet implementation class ShowServlet
+ * Servlet implementation class EditServlet
  */
-@WebServlet("/show")
-public class ShowServlet extends HttpServlet {
+@WebServlet("/edit")
+public class EditServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ShowServlet() {
+    public EditServlet() {
         super();
     }
 
@@ -37,10 +37,14 @@ public class ShowServlet extends HttpServlet {
         Message m = em.find(Message.class, Integer.parseInt(request.getParameter("id")));
         em.close();
 
-        //Call show.jsp after set the request data to the request scope
+        //Register session ID and message info at the request scope
         request.setAttribute("message", m);
+        request.setAttribute("_token", request.getSession().getId());
 
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/messages/show.jsp");
+        //Register message ID at the the session scope
+        request.getSession().setAttribute("message_id", m.getId());
+
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/messages/edit.jsp");
         rd.forward(request, response);
     }
 

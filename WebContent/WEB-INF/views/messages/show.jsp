@@ -11,5 +11,6 @@
         <p>Date created: <fmt:formatDate value="${message.created_at}" pattern="MM/dd/YYYY HH:mm:ss" /></p>
         <p>Date updated: <fmt:formatDate value="${message.updated_at}" pattern="MM/dd/YYYY HH:mm:ss" /></p>
         <p><a href="${pageContext.request.contextPath}/index">Back to list</a></p>
+        <p><a href="${pageContext.request.contextPath}/edit?id=${message.id}">Edit this post</a></p>
     </c:param>
 </c:import>
