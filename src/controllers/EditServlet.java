@@ -41,8 +41,10 @@ public class EditServlet extends HttpServlet {
         request.setAttribute("message", m);
         request.setAttribute("_token", request.getSession().getId());
 
-        //Register message ID at the the session scope
-        request.getSession().setAttribute("message_id", m.getId());
+        //Register message ID at the the session scope when only message data existed
+        if (m != null) {
+            request.getSession().setAttribute("message_id", m.getId());
+        }
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/messages/edit.jsp");
         rd.forward(request, response);
