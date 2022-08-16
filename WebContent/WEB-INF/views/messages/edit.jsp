@@ -10,5 +10,16 @@
         </form>
 
         <p><a href="${pageContext.request.contextPath}/index">Back to list</a></p>
+        <p><a href="#" onclick="confirmDestroy();">Delete this message</a></p>
+        <form method="POST" action="${pageContext.request.contextPath}/destroy">
+            <input type="hidden" name="_token" value="${_token}" />
+        </form>
+        <script>
+        function confirmDestroy(){
+        	if (confirm("You trying to delete this post. Really do you that?")){
+        		document.forms[1].submit();
+        	}
+        }
+        </script>
     </c:param>
 </c:import>
