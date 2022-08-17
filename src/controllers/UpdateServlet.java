@@ -51,6 +51,7 @@ public class UpdateServlet extends HttpServlet {
 
             em.getTransaction().begin();
             em.getTransaction().commit();
+            request.getSession().setAttribute("flush", "Update successful");
             em.close();
 
             // Delete data that no longer needed on the session scope
